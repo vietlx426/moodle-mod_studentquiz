@@ -62,7 +62,7 @@ class studentquiz_progress {
      */
     public function __construct(int $questionid, int $userid, int $studentquizid, int $sqqid, int $lastanswercorrect = 0,
         int $attempts = 0, int $correctattempts = 0, int $lastreadprivatecomment = 0, int $lastreadpubliccomment = 0,
-        int $id = null) {
+        ?int $id = null) {
         $this->questionid = $questionid;
         $this->userid = $userid;
         $this->studentquizid = $studentquizid;

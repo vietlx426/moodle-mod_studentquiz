@@ -175,10 +175,10 @@ style5 = html';
      * @param array $recipients - Emails list.
      * @param array $customdata - Custom data.
      * @param array $options - Custom options.
-     * @param \stdClass $user - User data.
+     * @param \stdClass|null $user - User data.
      * @return void
      */
-    public static function send_report($formdata, $recipients, $customdata, $options, $user = null) {
+    public static function send_report($formdata, $recipients, $customdata, $options, ?\stdClass $user = null) {
         global $USER;
 
         $numconditions = $options['numconditions'];
@@ -453,10 +453,10 @@ style5 = html';
      *
      * @param int $groupid The group id.
      * @param string $useridcolumn The column of the user id from the calling SQL, e.g. u.id
-     * @param context $context Course context or a context within a course. Mandatory when $groupids includes USERSWITHOUTGROUP
+     * @param \context|null $context |null $context Course context or a context within a course. Mandatory when $groupids includes USERSWITHOUTGROUP
      * @return sql_join Contains joins, wheres, params
      */
-    public static function sq_groups_get_members_join($groupid, $useridcolumn, $context = null) {
+    public static function sq_groups_get_members_join($groupid, $useridcolumn, ?\context $context = null) {
         // Don't need to join with group members if the user has the capability 'moodle/site:accessallgroups'.
         if (!$groupid || has_capability('moodle/site:accessallgroups', $context)) {
             $joins = '';
@@ -580,11 +580,11 @@ style5 = html';
      * @param int $studentquizquestionid Id of studentquizquestion.
      * @param int|null $userid
      * @param int $state The state of the question in the StudentQuiz.
-     * @param int $timecreated The time do action.
+     * @param int|null $timecreated The time do action.
      * @return bool|int True or new id
      */
     public static function question_save_action(int $studentquizquestionid, ?int $userid, int $state,
-            int $timecreated = null) {
+            ?int $timecreated = null) {
         global $DB;
 
         $data = new \stdClass();
@@ -778,7 +778,7 @@ style5 = html';
      * @return void
      */
     public static function require_access_to_a_relevant_group(object $cm, \context $context, string $title = '',
-            studentquiz_question $studentquizquestion = null): void {
+            ?studentquiz_question $studentquizquestion = null): void {
         global $COURSE, $PAGE, $USER;
         $groupmode = (int) groups_get_activity_groupmode($cm, $COURSE);
         $currentgroup = groups_get_activity_group($cm, true);

@@ -58,8 +58,8 @@ class studentquiz_question {
      * @param mixed|null $cm
      * @param mixed|null $context
      */
-    public function __construct(int $studentquizquestionid, question_definition $question = null,
-        stdClass $studentquiz = null, $cm = null, $context = null) {
+    public function __construct(int $studentquizquestionid, ?question_definition $question = null,
+        ?stdClass $studentquiz = null, $cm = null, $context = null) {
         $this->id = $studentquizquestionid;
         $this->load_studentquiz_question();
         $this->question = $question;
@@ -167,7 +167,7 @@ class studentquiz_question {
      * @param mixed $context
      * @return studentquiz_question StudentQuiz question object.
      */
-    public static function get_studentquiz_question_from_question(question_definition $question, stdClass $studentquiz = null,
+    public static function get_studentquiz_question_from_question(question_definition $question, ?stdClass $studentquiz = null,
         $cm = null, $context = null): studentquiz_question {
         global $DB;
         $params = [
@@ -314,11 +314,11 @@ class studentquiz_question {
      * Saving the action change state.
      *
      * @param int $state The state of the question in the StudentQuiz.
-     * @param int $userid
-     * @param int $timecreated The time do action.
+     * @param int|null $userid
+     * @param int|null $timecreated The time do action.
      * @return bool|int True or new id
      */
-    public function save_action(int $state, ?int $userid, int $timecreated = null) {
+    public function save_action(int $state, ?int $userid, ?int $timecreated = null) {
         global $DB;
 
         $data = new \stdClass();
